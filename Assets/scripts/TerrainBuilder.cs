@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using LibNoise;
-using LibNoise.SerializationStructs;
+using WarWorldInfinity.LibNoise;
+using WarWorldInfinity.Shared;
 
 public class TerrainBuilder : MonoBehaviour {
 	public static TerrainBuilder Instance { get; private set; }
@@ -12,7 +12,7 @@ public class TerrainBuilder : MonoBehaviour {
     public bool Generated;
 	public IModule module;
 	public List<GradientPresets.GradientKeyData> preset;
-	public LibNoise.Gradient gradient;
+	public WarWorldInfinity.LibNoise.Gradient gradient;
 	public List<string> textureFiles;
 	public List<Texture2D> terrainTextures;
 	public Camera cam;
@@ -64,7 +64,7 @@ public class TerrainBuilder : MonoBehaviour {
 		initiated = true;
 	}
 
-	public void AddTexture(string file, LibNoise.Color[] imageColors){
+	public void AddTexture(string file, WarWorldInfinity.Shared.Color[] imageColors){
 		GradientCreator.TextureFiles.Add(file, imageColors);
 		UnityEngine.Color[] colors = ConvertColor(imageColors);
 		Texture2D tex = new Texture2D(10, 10);
@@ -87,7 +87,7 @@ public class TerrainBuilder : MonoBehaviour {
                 time = watch.Elapsed.ToString();
                 TaskQueue.QueueMain(()=>Debug.Log("Generate Time: " + time));
                 data = NoiseMap.GetData();
-                LibNoise.Color[] sColors = NoiseMap.GetTexture (gradient);
+                WarWorldInfinity.Shared.Color[] sColors = NoiseMap.GetTexture (gradient);
 				colors = ConvertColor (sColors);
 				TaskQueue.QueueMain(()=>{
 					try {
@@ -130,7 +130,7 @@ public class TerrainBuilder : MonoBehaviour {
         Generated = true;
     }
 
-	public static UnityEngine.Color[] ConvertColor(LibNoise.Color[] dColors){
+	public static UnityEngine.Color[] ConvertColor(WarWorldInfinity.Shared.Color[] dColors){
         UnityEngine.Color[] newColors = new UnityEngine.Color[dColors.Length];
 		for (int i = 0; i < newColors.Length; i++) {
 			newColors[i] = new UnityEngine.Color((float)dColors[i].R / 255f, (float)dColors[i].G / 255f, (float)dColors[i].B / 255f, 1);

@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using Newtonsoft.Json;
-using LibNoise;
-using LibNoise.SerializationStructs;
+using WarWorldInfinity.LibNoise;
+using WarWorldInfinity.Shared;
+using tmpStructure = WarWorldInfinity.Shared.Structure;
+using WarWorldInfinity.Shared.Structures;
 
 public class NetworkController : MonoBehaviour {
 	public enum PermissionLevel
@@ -214,7 +216,7 @@ public class NetworkController : MonoBehaviour {
     }
 
     private void SetStructures_CMD(string args) {
-        LibNoise.SerializationStructs.Structure[] structures = JsonConvert.DeserializeObject<LibNoise.SerializationStructs.Structure[]>(args);
+        tmpStructure[] structures = JsonConvert.DeserializeObject<tmpStructure[]>(args, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
         Debug.Log("structures received: " + structures.Length);
         for (int i = 0; i < structures.Length; i++) {
             Debug.Log("Type: " + structures[i].type.ToString());

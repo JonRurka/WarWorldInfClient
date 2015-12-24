@@ -2,8 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using LibNoise;
-using LibNoise.SerializationStructs;
+using WarWorldInfinity.Shared;
+using tmpStructure = WarWorldInfinity.Shared.Structure;
+using WarWorldInfinity.Shared.Structures;
 
 public class StructureControl : MonoBehaviour {
     [Serializable]
@@ -50,7 +51,8 @@ public class StructureControl : MonoBehaviour {
     public Vector2 Size = new Vector2(0.5f, 0.5f);
     public List<string> textureNames;
     public GameObject structurePrefab;
-	public Dictionary<Vector2Int, Structure> outposts;
+    public GameObject radarPrefab;
+    public Dictionary<Vector2Int, Structure> outposts;
     public bool createOp = false;
 
     private Dictionary<StructureType, ImagePreset>_structureTextures;
@@ -101,7 +103,7 @@ public class StructureControl : MonoBehaviour {
         Invoke("Init_int", 1);
     }
 
-    public void SetStructures(LibNoise.SerializationStructs.Structure[] structures) {
+    public void SetStructures(tmpStructure[] structures) {
         for (int i = 0; i < structures.Length; i++) {
             Vector2Int pixelPos = structures[i].position;
             Vector2 worldPos = new Vector2(pixelPos.x / 10f, pixelPos.y / 10f);
@@ -121,6 +123,9 @@ public class StructureControl : MonoBehaviour {
 
                 case StructureType.Radar:
                     str = structureObj.AddComponent<Radar>();
+                    Radar radar = (Radar)str;
+                    RadarData data = (RadarData)structures[i].extraData;
+                    radar.data = data;
                     break;
                     
                 case StructureType.None:

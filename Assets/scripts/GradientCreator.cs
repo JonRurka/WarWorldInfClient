@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using LibNoise;
+using WarWorldInfinity.Shared;
+using WarWorldInfinity.LibNoise;
 
 
 public static class GradientCreator {

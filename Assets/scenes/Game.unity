@@ -391,6 +391,7 @@ MonoBehaviour:
   - unknown
   - outpost
   structurePrefab: {fileID: 133460, guid: 2af2ab1c401169f4ca6ab19d2fec772c, type: 2}
+  radarPrefab: {fileID: 197384, guid: 41d589956c3696241a3ad2502621b69c, type: 2}
   createOp: 0
 --- !u!114 &2083687522
 MonoBehaviour:

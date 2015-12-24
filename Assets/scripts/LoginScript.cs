@@ -13,6 +13,13 @@ public class LoginScript : MonoBehaviour {
     public bool keyboardOpen = false;
     private TouchScreenKeyboard keybaord;
 
+    struct testStruct {
+        public int someVal;
+        public testStruct(int someVal) {
+            this.someVal = someVal;
+        }
+    }
+
     void Awake() {
         Instance = this;
     }

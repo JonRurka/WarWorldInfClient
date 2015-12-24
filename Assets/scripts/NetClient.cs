@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Newtonsoft.Json;
-using LibNoise.SerializationStructs;
+using WarWorldInfinity.Shared;
 
 public class NetClient : MonoBehaviour {
     public delegate void CMD(string data);

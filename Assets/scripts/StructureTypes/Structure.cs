@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using LibNoise;
+using WarWorldInfinity.Shared;
+using tmpStructure = WarWorldInfinity.Shared.Structure;
+using WarWorldInfinity.Shared.Structures;
 
 public class Structure : MonoBehaviour {
     public enum Standing {
